@@ -28,11 +28,11 @@ const Description = styled.p`
   margin-bottom: 20px;
 `;
 
-const Link = styled.a.attrs(props => {console.log(props); return ({
+const Link = styled.a.attrs(props => ({
   href: props.disabled === true ? '' : props.href,
   download: props.download,
-  disabled: props.disabled ? true : false
-})})`
+  disabled: props.disabled
+}))`
   width: min-content;
   white-space: nowrap;
   display: flex;

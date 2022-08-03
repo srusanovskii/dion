@@ -1,5 +1,5 @@
 import React from 'react';
-import Background from './../components/BackgroundImage';
+import Background from '../components/Background';
 import Card from './../components/Card';
 import HorizontalAlign from './../components/HorizontalAlign';
 import PositionAbsolute from './../components/PositionAbsolute';
