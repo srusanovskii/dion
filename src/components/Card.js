@@ -29,9 +29,9 @@ const Description = styled.p`
 `;
 
 const Link = styled.a.attrs(props => ({
-  href: props.disabled === true ? '' : props.href,
-  download: props.download,
-  disabled: props.disabled
+  href: props.href,
+  disabled: props.disabled,
+    target: "_blank"
 }))`
   width: min-content;
   white-space: nowrap;
@@ -46,6 +46,7 @@ const Link = styled.a.attrs(props => ({
   font-size: 16px;
   line-height: 20px;
   color: #fff;
+  cursor: pointer;
 
   &:hover {
     background-color: #004DC9;
@@ -72,16 +73,20 @@ const HorizontalSpace = styled.div`
   width: ${props => props.width};
 `;
 
-const Card = ({ title, description, linkText, href, download, leftIcon, rightIcon, disabled }) => 
+const Card = ({ title, description, linkText, href, leftIcon, rightIcon, disabled }) => {
+    const openDocs = (e) => {
+        if (typeof(href) === "object" ) href.map(doc => window.open(doc));
+    }
+  return (
   <StyledCard>
-    <Title>{title}</Title>
-    <Description>{description}</Description>
-    <Link href={href} download={download} disabled={disabled}>
-      {leftIcon && <>{leftIcon}<HorizontalSpace width="4px" /></>}
-      {linkText}
-      {rightIcon && <><HorizontalSpace width="4px" />{rightIcon}</>}
-    </Link>
-  </StyledCard>
-;
+        <Title>{title}</Title>
+        <Description>{description}</Description>
+        <Link onClick={openDocs} href={typeof(href) === "object" ? null: href } disabled={disabled}>
+            {leftIcon && <>{leftIcon}<HorizontalSpace width="4px"/></>}
+            {linkText}
+            {rightIcon && <><HorizontalSpace width="4px"/>{rightIcon}</>}
+        </Link>
+    </StyledCard>)
+};
 
 export default Card;
